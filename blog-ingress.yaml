@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: blog
+  namespace: blog
+  labels:
+    name: blog
+spec:
+  rules:
+  - host: blog.sharryxu.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          serviceName: blog
+          servicePort: 5000

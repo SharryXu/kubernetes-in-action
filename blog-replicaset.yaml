@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: blog
+  namespace: blog
+spec:
+  replicas: 1
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - blog
+  template:
+    metadata:
+      labels:
+        app: blog
+    spec:
+      containers:
+        - image: sharry.azurecr.io/blog:latest
+          imagePullPolicy: Always
+          name: blog
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+      imagePullSecrets:
+      - name: azureregcred

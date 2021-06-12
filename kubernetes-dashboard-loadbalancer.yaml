@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: kubernetes-dashboard-loadbalancer
+  namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      port: 8443
+      targetPort: 8443
+  selector:
+    k8s-app: kubernetes-dashboard
+  type: ExternalName
+  externalName: kubernetes-dashboard-svc.kubernetes-dashboard.svc.cluster.local

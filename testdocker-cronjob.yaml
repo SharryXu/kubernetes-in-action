@@ -1,0 +1,19 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: testdocker-cron
+spec:
+  schedule: "0,15,30,45 * * * *"
+  jobTemplate:
+   spec:
+     template:
+       metadata:
+         labels:
+           app: testdocker-cron
+       spec:
+         imagePullSecrets:
+         - name: azureregcred
+         containers:
+         - name: pi
+           image: sharry.azurecr.io/testdocker
+         restartPolicy: Never

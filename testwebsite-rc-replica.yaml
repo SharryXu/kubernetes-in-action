@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: testwebsite
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - testwebsite
+  template:
+    metadata:
+      labels:
+        app: testwebsite
+    spec:
+      imagePullSecrets:
+      - name: azureregcred
+      containers:
+      - name: testwebsite
+        image: sharry.azurecr.io/testwebsite

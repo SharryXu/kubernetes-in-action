@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bash
+  labels:
+    name: bash
+spec:
+  containers:
+  - name: bash
+    image: rabbitmq
+    volumeMounts:
+      - mountPath: /sharry
+        name: data
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: azure-file-claim
