@@ -1,1 +1,1 @@
-# learning-k8s
+# Kubernetes in Action
